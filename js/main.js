@@ -55,7 +55,7 @@ $('#btnStep1').click(function(){
             alert('Error in inserting data to EMAYA_PERSON ' + error);
         }
 	}).then(function(emaya_person){
-		window.open("step2.html","_self");
+		// window.open("step2.html","_self");
 	},function(error){
 		alert('Error in inserting data to EMAYA_PERSON ' + error);
 	});
