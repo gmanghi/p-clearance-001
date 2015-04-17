@@ -133,7 +133,7 @@ function insertPolClearApplication(person_id,police_clr_id,person_code,pol_clr_c
 	}).then(function(emaya_polclear_application){ 
 		alert('police_clr_id ' + police_clr_id);
 		var EMAYA_POLICE_CLEARANCE = Parse.Object.extend("EMAYA_POLICE_CLEARANCE");
-		var emaya_police_clearance = new EMAYA_POLICE_CLEARANCE();
+		var emaya_police_clearance = new Parse.Query(EMAYA_POLICE_CLEARANCE);
 		emaya_police_clearance.equalTo("objectId",police_clr_id);
 		emaya_police_clearance.find({
 			success: function(result) {
