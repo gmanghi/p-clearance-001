@@ -49,13 +49,14 @@ $('#btnStep1').click(function(){
     emaya_person.save(null,{
         success:function(emaya_person) { 
             console.log(emaya_person);
-			insertEmayaPoliceClearance(emaya_person.id,person_code);
+			
         },
         error:function(error) {
             alert('Error in inserting data to EMAYA_PERSON ' + error);
         }
 	}).then(function(emaya_person){
 		// window.open("step2.html","_self");
+		insertEmayaPoliceClearance(emaya_person.id,person_code);
 	},function(error){
 		alert('Error in inserting data to EMAYA_PERSON ' + error);
 	});
@@ -95,26 +96,30 @@ function insertEmayaPoliceClearance(person_id,person_code){
     emaya_police_clearance.save(null,{
         success:function(emaya_police_clearance) { 
             console.log(emaya_police_clearance);
-			pol_clrapp_id = insertPolClearApplication(person_id,emaya_police_clearance.id,person_code,police_clearance_code);
-			alert(pol_clrapp_id);
-			emaya_police_clearance.set("POL_CLRAPP_ID",pol_clrapp_id);
-			emaya_police_clearance.save(null, {
-				success:function(){
-					console.log(emaya_police_clearance);
-					return;
-				},
-				error:function(error){
-					alert('Error in updating the POL_CLRAPP_ID ' + error);
-				}
-			});
         },
         error:function(error) {
             alert('Error in inserting data to EMAYA_POLICE_CLEARANCE ' + error);
         }
+	}).then(function(emaya_police_clearance){
+		pol_clrapp_id = insertPolClearApplication(person_id,emaya_police_clearance.id,person_code,police_clearance_code);
+		alert(pol_clrapp_id);
+		emaya_police_clearance.set("POL_CLRAPP_ID",pol_clrapp_id);
+		emaya_police_clearance.save(null, {
+			success:function(){
+				console.log(emaya_police_clearance);
+				return;
+			},
+			error:function(error){
+				alert('Error in updating the POL_CLRAPP_ID ' + error);
+			}
+		});
+	},function(error){
+		alert('Error in inserting data to EMAYA_POLICE_CLEARANCE ' + error);
 	});
 }
 
 function insertPolClearApplication(person_id,police_clr_id,person_code,pol_clr_code){
+	var self = this;
 	var EMAYA_POLCLEAR_APPLICATION = Parse.Object.extend("EMAYA_POLCLEAR_APPLICATION");
     var emaya_polclear_application = new EMAYA_POLCLEAR_APPLICATION();
 	polclear_application_code = code_generator();
@@ -139,10 +144,15 @@ function insertPolClearApplication(person_id,police_clr_id,person_code,pol_clr_c
     emaya_polclear_application.save(null,{
         success:function(emaya_polclear_application) { 
             console.log(emaya_polclear_application);
-			return emaya_polclear_application.id;
         },
         error:function(error) {
             alert('Error in inserting data to EMAYA_POLCLEAR_APPLICATION ' + error);
         }
+	}).then(function(emaya_polclear_application){
+		self.emaya_polclear_application = emaya_polclear_application.id;
+	},function(error){
+		alert('Error in inserting data to EMAYA_POLCLEAR_APPLICATION ' + error);
 	});
+	
+	return self.emaya_polclear_application;
 }
