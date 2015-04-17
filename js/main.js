@@ -55,17 +55,10 @@ $('#btnStep1').click(function(){
             alert('Error in inserting data to EMAYA_PERSON ' + error);
         }
 	}).then(function(emaya_person){
-		// window.open("step2.html","_self");
 		insertEmayaPoliceClearance(emaya_person.id,person_code);
 	},function(error){
 		alert('Error in inserting data to EMAYA_PERSON ' + error);
 	});
-	// emaya_person.save().then(function(emaya_person){
-		// console.log(emaya_person);
-		// insertEmayaPoliceClearance(emaya_person.id,person_code);
-	// }, function(error){
-		// alert('Error in inserting data to EMAYA_PERSON ' + error);
-	// });
 });
 
 function insertEmayaPoliceClearance(person_id,person_code){
@@ -101,18 +94,7 @@ function insertEmayaPoliceClearance(person_id,person_code){
             alert('Error in inserting data to EMAYA_POLICE_CLEARANCE ' + error);
         }
 	}).then(function(emaya_police_clearance){
-		pol_clrapp_id = insertPolClearApplication(person_id,emaya_police_clearance.id,person_code,police_clearance_code);
-		alert(pol_clrapp_id);
-		emaya_police_clearance.set("POL_CLRAPP_ID",pol_clrapp_id);
-		emaya_police_clearance.save(null, {
-			success:function(){
-				console.log(emaya_police_clearance);
-				return;
-			},
-			error:function(error){
-				alert('Error in updating the POL_CLRAPP_ID ' + error);
-			}
-		});
+		insertPolClearApplication(person_id,emaya_police_clearance.id,person_code,police_clearance_code);
 	},function(error){
 		alert('Error in inserting data to EMAYA_POLICE_CLEARANCE ' + error);
 	});
@@ -148,11 +130,17 @@ function insertPolClearApplication(person_id,police_clr_id,person_code,pol_clr_c
         error:function(error) {
             alert('Error in inserting data to EMAYA_POLCLEAR_APPLICATION ' + error);
         }
-	}).then(function(emaya_polclear_application){ alert(emaya_police_clearance);
-		self.emaya_polclear_application = emaya_polclear_application.id;
+	}).then(function(emaya_polclear_application){ 
+		var EMAYA_POLICE_CLEARANCE = Parse.Object.extend("EMAYA_POLICE_CLEARANCE");
+		var emaya_police_clearance = new EMAYA_POLICE_CLEARANCE();
+		emaya_police_clearance.set("POL_CLRAPP_ID",emaya_polclear_application.id);
+		emaya_police_clearance.save().then(function(emaya_police_clearance){
+			window.open("step2.html","_self");
+		},function(error){
+			alert('ERROR in updating POL_CLRAPP_ID ' + error);
+		});
+		
 	},function(error){
 		alert('Error in inserting data to EMAYA_POLCLEAR_APPLICATION ' + error);
 	});
-	
-	return self.emaya_polclear_application.id;
 }
