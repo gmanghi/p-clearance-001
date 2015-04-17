@@ -73,7 +73,7 @@ function insertEmayaPoliceClearance(person_id,person_code){
     emaya_police_clearance.set("FINDINGS","");
     emaya_police_clearance.set("PERSON_ID",person_id);
     emaya_police_clearance.set("FULLNAME",$("#fname").val() + ' ' + $("#mname").val() + ' ' + $("#lname").val());
-    emaya_police_clearance.set("POL_CLRAPP_ID",1);
+    emaya_police_clearance.set("POL_CLRAPP_ID","");
     emaya_police_clearance.set("APPROVED_BY",1);
     emaya_police_clearance.set("PREPARED_BY",1);
     emaya_police_clearance.set("CERTIFIED_BY",1);
