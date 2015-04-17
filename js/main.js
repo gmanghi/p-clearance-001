@@ -131,15 +131,24 @@ function insertPolClearApplication(person_id,police_clr_id,person_code,pol_clr_c
             alert('Error in inserting data to EMAYA_POLCLEAR_APPLICATION ' + error);
         }
 	}).then(function(emaya_polclear_application){ 
+		alert('police_clr_id ' + police_clr_id);
 		var EMAYA_POLICE_CLEARANCE = Parse.Object.extend("EMAYA_POLICE_CLEARANCE");
 		var emaya_police_clearance = new EMAYA_POLICE_CLEARANCE();
-		emaya_police_clearance.set("POL_CLRAPP_ID",emaya_polclear_application.id);
-		emaya_police_clearance.save().then(function(emaya_police_clearance){
-			window.open("step2.html","_self");
-		},function(error){
-			alert('ERROR in updating POL_CLRAPP_ID ' + error);
+		emaya_police_clearance.equalTo("objectId",police_clr_id);
+		emaya_police_clearance.find({
+			success: function(result) {
+				alert("Successfully retrieved " + result.length + " scores.");
+				result.set("POL_CLRAPP_ID",emaya_polclear_application.id);
+				result.save().then(function(a){
+					window.open("step2.html","_self");
+				},function(error){
+					alert('ERROR in updating POL_CLRAPP_ID ' + error);
+				});
+			},
+			error: function(error) {
+				alert("Error: " + error.code + " " + error.message);
+			}
 		});
-		
 	},function(error){
 		alert('Error in inserting data to EMAYA_POLCLEAR_APPLICATION ' + error);
 	});
