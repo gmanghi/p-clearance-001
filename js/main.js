@@ -148,11 +148,11 @@ function insertPolClearApplication(person_id,police_clr_id,person_code,pol_clr_c
         error:function(error) {
             alert('Error in inserting data to EMAYA_POLCLEAR_APPLICATION ' + error);
         }
-	}).then(function(emaya_polclear_application){
+	}).then(function(emaya_polclear_application){ alert(emaya_police_clearance);
 		self.emaya_polclear_application = emaya_polclear_application.id;
 	},function(error){
 		alert('Error in inserting data to EMAYA_POLCLEAR_APPLICATION ' + error);
 	});
 	
-	return self.emaya_polclear_application;
+	return self.emaya_polclear_application.id;
 }
