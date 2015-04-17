@@ -50,12 +50,21 @@ $('#btnStep1').click(function(){
         success:function(emaya_person) { 
             console.log(emaya_person);
 			insertEmayaPoliceClearance(emaya_person.id,person_code);
-			window.open('step2.html',"_self");
         },
         error:function(error) {
             alert('Error in inserting data to EMAYA_PERSON ' + error);
         }
+	}).then(function(emaya_person){
+		window.open("step2.html","_self");
+	},function(error){
+		alert('Error in inserting data to EMAYA_PERSON ' + error);
 	});
+	// emaya_person.save().then(function(emaya_person){
+		// console.log(emaya_person);
+		// insertEmayaPoliceClearance(emaya_person.id,person_code);
+	// }, function(error){
+		// alert('Error in inserting data to EMAYA_PERSON ' + error);
+	// });
 });
 
 function insertEmayaPoliceClearance(person_id,person_code){
