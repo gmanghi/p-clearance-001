@@ -8,7 +8,7 @@ $(function() {
 	}
 	$("#username").html(current.attributes.username);
 	
-	var EMAYA_PERSON = Parse.Object.extend("EMAYA_PERSON");
+	var EMAYA_PERSON = Parse.Object.extend("Drinks");
 	var query = new Parse.Query(EMAYA_PERSON);
 	// query.equalTo("objectId",police_clr_id);
 	query.find({
