@@ -16,7 +16,6 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
-	<link href="css/webcam.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -135,7 +134,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span id="username">John Smith</span> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -157,36 +156,39 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="profile.html"><i class="fa fa-fw fa-dashboard"></i> Admin</a>
+                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Warrant <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    </li>
+                    <li>
+                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                    </li>
+                    <li>
+                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="warrant-list.html">List</a>
+                                <a href="#">Dropdown Item</a>
                             </li>
                             <li>
-                                <a href="warrant-create.html">Create</a>
+                                <a href="#">Dropdown Item</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Mayors Clearance</a>
-                    </li>
-					<li>
-                        <a href="step1.html"><i class="fa fa-fw fa-file"></i> Police Clearance</a>
+                    <li class="active">
+                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Blotter</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Booking</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Remote</a>
-                    </li>
-					<li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Report</a>
+                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li>
                 </ul>
             </div>
@@ -202,56 +204,26 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Generate Clearance
-                            <small>Step 2 of 3 Please take the picture of the applicant.</small>
-							<a href="step3.html" class="pull-right btn btn-primary"><b>Go to Step 3 (Thumb Print)</b></a>
+                            <small>Step 3 of 3</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                Details
+                                <a href="index.html">Start</a>
                             </li>
                             <li class="active">
-								Picture
+								<a href="index.html">Details</a>
                             </li>
-							<li>
-								Thumb Print
+							<li class="active">
+								<a href="index.html">Thumb Print</a>
                             </li>
-							<li>
+							<li class="active">
 								Finish
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="col-lg-offset-2 col-lg-4 text-center">
-							<h2>Input</h2>
-							<div id="webcam"></div>
-						</div>
 
-						<div class="col-lg-4 text-center">
-							<h2>Output</h2>
-							<canvas id="canvas" height="242" width="322"></canvas>
-						</div>
-						<!--
-						<div class="col-lg-4">	    
-							<h2>Face Detection</h2>
-							<canvas id="output"  height="242" width="322"></canvas>
-						</div>
-						-->						
-					</div>
-					<div class="col-lg-12">
-						<p id="errorMessage"></p>
-					</div>
-					<div class="col-lg-12">
-						<div class="col-lg-4">&nbsp;</div>
-						<div class="col-lg-4 text-center">
-							<button class="btn btn-primary btn-large" id="takeSnapshot">Capture</button>
-							<!--<button class="btn btn-primary btn-large" id="detectFaces">2. Detect faces</button>-->
-						</div>
-						<div class="col-lg-4">&nbsp;</div>
-					</div>
-				</div>
             </div>
             <!-- /.container-fluid -->
 
@@ -260,20 +232,10 @@
 
     </div>
     <!-- /#wrapper -->
-
-	<!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-
-	<!-- Webcam -->
-	<!--[if IE]><script src="js/excanvas.js"></script><![endif]-->
-	<script type="text/javascript" src="js/lib/getUserMedia.js"></script>
-	<script type="text/javascript" src="js/glasses/ccv.js"></script>
-	<script type="text/javascript" src="js/glasses/face.js"></script>
-	<script type="text/javascript" src="js/glasses/stackblur.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
-
 	
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 
 </html>
