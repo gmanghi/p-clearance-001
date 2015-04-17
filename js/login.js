@@ -22,6 +22,9 @@ $('.form-signin').on('submit', function(e) {
 		if(response){
 			window.open('step1.html',"_self");
 		}
+		else{
+			alert('Invalid Credentials');
+		}
 	});
 	
 	// Parse.Cloud.run('login', {
