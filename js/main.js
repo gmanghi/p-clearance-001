@@ -50,6 +50,7 @@ $('#btnStep1').click(function(){
         success:function(emaya_person) { 
             console.log(emaya_person);
 			insertEmayaPoliceClearance(emaya_person.id,person_code);
+			window.open('step2.html',"_self");
         },
         error:function(error) {
             alert('Error in inserting data to EMAYA_PERSON ' + error);
@@ -86,6 +87,7 @@ function insertEmayaPoliceClearance(person_id,person_code){
         success:function(emaya_police_clearance) { 
             console.log(emaya_police_clearance);
 			pol_clrapp_id = insertPolClearApplication(person_id,emaya_police_clearance.id,person_code,police_clearance_code);
+			alert(pol_clrapp_id);
 			emaya_police_clearance.set("POL_CLRAPP_ID",pol_clrapp_id);
 			emaya_police_clearance.save(null, {
 				success:function(){
