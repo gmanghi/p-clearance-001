@@ -53,6 +53,32 @@ $(function() {
 			alert("Error: " + error.code + " " + error.message);
 		}
 	});
+	
+	var EMAYA_PERSON_PICTURE = Parse.Object.extend("EMAYA_PERSON_PICTURE");
+	var query = new Parse.Query(EMAYA_PERSON_PICTURE);
+	query.find({
+		success: function(result) {
+			var table = "<table class='table table-bordered'>";
+			table += "<th>ID</th>";
+			table += "<th>PERSON_ID</th>";
+			table += "<th>PICTURE</th>";
+			table += "<th>PERSON_CODE</th>";
+			$.each(result, function(a,b){
+				table += "<tr>";
+				table += "<td>"+b.attributes['ID']+"</td>";
+				table += "<td>"+b.attributes['PERSON_ID']+"</td>";
+				table += "<td><img src='"+b.attributes['PICTURE']+"' style='width:250px;'/></td>";
+				table += "<td>"+b.attributes['PERSON_CODE']+"</td>";
+				table += "</tr>";
+			});
+			table += "</table>";
+			$("#emaya_person_picture").html(table);
+			
+		},
+		error: function(error) {
+			alert("Error: " + error.code + " " + error.message);
+		}
+	});
 });
 
 $('#logout').click(function(){

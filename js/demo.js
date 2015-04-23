@@ -168,7 +168,7 @@
 				App.canvas.width = video.videoWidth;
 				App.canvas.height = video.videoHeight;
 				App.canvas.getContext('2d').drawImage(video, 0, 0);
-
+				console.log(App.canvas.toDataURL('image/jpeg'));
 			// Otherwise, if the context is Flash, we ask the shim to
 			// directly call window.webcam, where our shim is located
 			// and ask it to capture for us.
@@ -190,7 +190,7 @@
 			glasses.src = "js/glasses/i/glasses.png";
 			canvas = document.querySelector("#output");
 			ctx = canvas.getContext("2d");
-
+			
 			ctx.drawImage(source, 0, 0, 520, 426);
 
 			pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -248,7 +248,6 @@
 					ctx.drawImage(glasses, comp[i].x, comp[i].y, comp[i].width, comp[i].height);
 				}
 			}
-
 		}
 
 	};
